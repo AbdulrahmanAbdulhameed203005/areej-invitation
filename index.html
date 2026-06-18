@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دعوة خاصة ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+@font-face {
+    font-family: "Foda Naskh";
+    src: local("Foda Naskh"), local("FodaNaskh-Regular"), local("FodaNaskh");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Foda Naskh", "Noto Naskh Arabic", serif;
+}
+
+body {
+    background: #EAD9DF;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    color: #70136A;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+    padding: clamp(16px, 5vw, 30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.container.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+    position: absolute;
+}
+
+h1 {
+    color: #70136A;
+    line-height: 2;
+    font-size: clamp(22px, 5vw, 32px);
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.hero-image {
+    display: block;
+    max-width: min(280px, 75vw);
+    width: 100%;
+    margin: 0 auto clamp(24px, 5vw, 32px);
+    border-radius: 0;
+    filter: none;
+}
+
+.emoji-deco {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: clamp(28px, 6vw, 40px);
+}
+
+.deco-diamond {
+    width: 9px;
+    height: 9px;
+    background: #70136A;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+}
+
+.heart-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: #9B30C8;
+    border-radius: 9px;
+    flex-shrink: 0;
+}
+
+.heart-badge svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+}
+
+.heart-badge--btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+}
+
+.heart-badge--btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.deco-star {
+    font-size: 22px;
+    line-height: 1;
+    color: #E8B923;
+    flex-shrink: 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(12px, 3vw, 20px);
+    width: 100%;
+    min-height: 56px;
+    flex-wrap: wrap;
+}
+
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    direction: ltr;
+    border: none;
+    padding: clamp(12px, 3vw, 14px) clamp(32px, 8vw, 48px);
+    border-radius: 50px;
+    font-size: clamp(18px, 4.5vw, 22px);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-family: "Foda Naskh", "Noto Naskh Arabic", serif;
+    background: #fff;
+    color: #70136A;
+    box-shadow: 0 4px 16px rgba(112, 19, 106, 0.12);
+}
+
+.btn-icon {
+    font-size: 1.15em;
+    line-height: 1;
+}
+
+.btn-label {
+    color: #70136A;
+    font-weight: 600;
+}
+
+#yesBtn {
+    z-index: 2;
+}
+
+#yesBtn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(112, 19, 106, 0.18);
+}
+
+#noBtn {
+    white-space: nowrap;
+}
+
+#noBtn.running {
+    position: fixed;
+    z-index: 10;
+    box-shadow: 0 6px 24px rgba(112, 19, 106, 0.2);
+}
+
+#inviteSection {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    max-width: 920px;
+}
+
+#inviteSection.visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.invite-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: #70136A;
+    font-size: clamp(26px, 6.5vw, 40px);
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: clamp(6px, 1.5vw, 10px);
+}
+
+.heart-badge--inline {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.heart-badge--inline svg {
+    width: 18px;
+    height: 18px;
+}
+
+.invite-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(20px, 4vw, 40px);
+    flex-wrap: wrap;
+    direction: ltr;
+}
+
+.invite-image {
+    display: block;
+    max-width: min(340px, 42vw);
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.details-card {
+    background: #fff;
+    border-radius: 28px;
+    padding: clamp(28px, 5vw, 40px) clamp(32px, 6vw, 44px);
+    min-width: min(100%, 260px);
+    flex: 1;
+    max-width: 380px;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    column-gap: 14px;
+    row-gap: clamp(18px, 4vw, 24px);
+    align-items: center;
+    direction: rtl;
+}
+
+.detail-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(20px, 4vw, 24px);
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.detail-text {
+    color: #70136A;
+    font-size: clamp(17px, 3.5vw, 21px);
+    font-weight: 600;
+    text-align: right;
+    line-height: 1.4;
+}
+.invite-video {
+    width: 100%;
+    max-width: 500px;
+    margin: clamp(28px, 5vw, 36px) auto 0;
+    display: block;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(112, 19, 106, 0.12);
+}
+
+.heart {
+    position: fixed;
+    pointer-events: none;
+    line-height: 0;
+    animation: floatUp 2s ease-out forwards;
+    z-index: 100;
+}
+
+.heart svg {
+    display: block;
+}
+
+.heart--white svg {
+    filter: drop-shadow(0 2px 6px rgba(112, 19, 106, 0.25));
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-120px) scale(1.4);
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        line-height: 1.9;
+        margin-bottom: 28px;
+    }
+
+    .invite-layout {
+        flex-direction: column;
+    }
+
+    .invite-image {
+        max-width: min(280px, 80vw);
+    }
+
+    .details-card {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+@supports (padding: env(safe-area-inset-bottom)) {
+    body {
+        padding:
+            env(safe-area-inset-top)
+            env(safe-area-inset-right)
+            env(safe-area-inset-bottom)
+            env(safe-area-inset-left);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="questionSection">
+
+<img class="hero-image" src="dress.jpeg" alt="">
+
+<h1>
+قبل أن أبدأ فصلاً جديدًا من حياتي…<br>
+هل ستشاركينني ليلة أحتفظ بذكراها للأبد؟
+</h1>
+
+<div class="emoji-deco">
+<span class="deco-diamond" aria-hidden="true"></span>
+<span class="heart-badge" aria-hidden="true">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+</span>
+<span class="deco-star" aria-hidden="true">✦</span>
+</div>
+
+<div class="buttons">
+<button id="yesBtn">
+<span class="heart-badge heart-badge--btn" aria-hidden="true">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+</span>
+<span class="btn-label">نعم</span>
+</button>
+<button id="noBtn"><span class="btn-icon">💔</span><span class="btn-label">لا</span></button>
+</div>
+
+</div>
+
+<div class="container" id="inviteSection">
+
+<h2 class="invite-title">
+<span>ياحلوك !! بتنوريني والله</span>
+<span class="heart-badge heart-badge--inline" aria-hidden="true">
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+</span>
+</h2>
+
+<div class="invite-layout">
+<img class="invite-image" src="dress.jpeg" alt="">
+
+<div class="details-card">
+<span class="detail-icon">🗓️</span>
+<span class="detail-text">22•6•2026</span>
+<span class="detail-icon">📍</span>
+<span class="detail-text">منتجع اوراق-ديراب</span>
+<span class="detail-icon">⏳</span>
+<span class="detail-text">من ٨م الى ٨ص</span>
+<span class="detail-icon">👗</span>
+<span class="detail-text">dress code: Spring colors.</span>
+</div>
+</div>
+
+<video id="inviteVideo" class="invite-video" controls playsinline muted autoplay loop>
+<source src="video.mp4" type="video/mp4">
+</video>
+
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const questionSection = document.getElementById("questionSection");
+const inviteSection = document.getElementById("inviteSection");
+const inviteVideo = document.getElementById("inviteVideo");
+
+const noTexts = [
+    { label: "لا", icon: "💔" },
+    { label: "متأكدة؟", icon: "💔" },
+    { label: "فكّري مرة ثانية", icon: "😄" },
+    { label: "لا يمكن", icon: "😂" }
+];
+let noTextIndex = 0;
+let hasMoved = false;
+
+function setNoBtnContent(index) {
+    const item = noTexts[index];
+    noBtn.querySelector(".btn-icon").textContent = item.icon;
+    noBtn.querySelector(".btn-label").textContent = item.label;
+}
+
+function moveButton() {
+    if (!hasMoved) {
+        hasMoved = true;
+        const rect = noBtn.getBoundingClientRect();
+        noBtn.classList.add("running");
+        noBtn.style.left = rect.left + "px";
+        noBtn.style.top = rect.top + "px";
+    }
+
+    const rect = noBtn.getBoundingClientRect();
+    const maxX = window.innerWidth - rect.width - 10;
+    const maxY = window.innerHeight - rect.height - 10;
+
+    noBtn.style.left = (10 + Math.random() * maxX) + "px";
+    noBtn.style.top = (10 + Math.random() * maxY) + "px";
+
+    noTextIndex = (noTextIndex + 1) % noTexts.length;
+    setNoBtnContent(noTextIndex);
+}
+
+function spawnHearts(count) {
+    const styles = [
+        { fill: "#fff", stroke: "#70136A" },
+        { fill: "#fff", stroke: "#70136A" },
+        { fill: "#fff", stroke: "#9B30C8" },
+        { fill: "#fff", stroke: "none" },
+        { fill: "#70136A", stroke: "none" },
+        { fill: "#9B30C8", stroke: "none" }
+    ];
+    const heartPath = "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z";
+
+    for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+            const style = styles[Math.floor(Math.random() * styles.length)];
+            const size = 16 + Math.random() * 22;
+            const stroke = style.stroke !== "none"
+                ? `stroke="${style.stroke}" stroke-width="1.5"`
+                : "";
+            const heart = document.createElement("span");
+            heart.className = style.fill === "#fff" ? "heart heart--white" : "heart";
+            heart.innerHTML = `<svg viewBox="0 0 24 24" width="${size}" height="${size}"><path fill="${style.fill}" ${stroke} d="${heartPath}"/></svg>`;
+            heart.style.left = (Math.random() * window.innerWidth) + "px";
+            heart.style.top = (Math.random() * window.innerHeight * 0.6 + window.innerHeight * 0.2) + "px";
+            document.body.appendChild(heart);
+            heart.addEventListener("animationend", () => heart.remove());
+        }, i * 80);
+    }
+}
+
+["mouseover", "touchstart", "pointerenter"].forEach(event => {
+    noBtn.addEventListener(event, e => {
+        e.preventDefault();
+        moveButton();
+    }, { passive: false });
+});
+
+noBtn.addEventListener("click", e => {
+    e.preventDefault();
+    moveButton();
+});
+
+yesBtn.addEventListener("click", () => {
+    spawnHearts(30);
+
+    questionSection.classList.add("hidden");
+
+    setTimeout(() => {
+        questionSection.style.display = "none";
+        inviteSection.style.display = "block";
+        requestAnimationFrame(() => inviteSection.classList.add("visible"));
+        inviteVideo.play().catch(() => {});
+    }, 600);
+});
+</script>
+
+</body>
+</html>
